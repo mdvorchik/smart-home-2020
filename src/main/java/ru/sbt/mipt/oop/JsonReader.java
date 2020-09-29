@@ -8,11 +8,11 @@ import java.nio.file.Paths;
 
 public class JsonReader implements IStateReader {
     @Override
-    public Object readState(Object source, Class classOfTargetObject) throws IOException {
+    public SmartHome readStateOfHome(Object source) throws IOException {
         Gson gson = new Gson();
         String pathToJsonFile = source.toString();
         String json = new String(Files.readAllBytes(Paths.get(pathToJsonFile)));
-        Object targetObject = gson.fromJson(json, classOfTargetObject);
+        SmartHome targetObject = gson.fromJson(json, SmartHome.class);
         return targetObject;
     }
 }

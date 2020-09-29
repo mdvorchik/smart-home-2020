@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop;
 
-public class Light {
+public class Light implements ILight{
     private boolean isOn;
     private final String id;
 
@@ -9,14 +9,17 @@ public class Light {
         this.isOn = isOn;
     }
 
+    @Override
     public boolean isOn() {
         return isOn;
     }
 
+    @Override
     public String getId() {
         return id;
     }
 
+    @Override
     public void setOn(boolean on) {
         isOn = on;
     }

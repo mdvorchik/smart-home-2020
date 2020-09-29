@@ -4,6 +4,6 @@ import java.io.IOException;
 
 public interface IStateReader {
 
-    public Object readState (Object source, Class classOfTargetObject) throws IOException;
+    public SmartHome readStateOfHome (Object source) throws IOException;
 
 }
