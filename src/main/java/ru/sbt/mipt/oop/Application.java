@@ -12,13 +12,13 @@ public class Application {
 
     public static void main(String... args) throws IOException {
         // считываем состояние дома из файла
-        Gson gson = new Gson();
-        String json = new String(Files.readAllBytes(Paths.get("smart-home-1.js")));
-        SmartHome smartHome = gson.fromJson(json, SmartHome.class);
+        IStateReader stateReader = new JsonReader();
+        SmartHome smartHome = (SmartHome) stateReader.readState("smart-home-1.js", SmartHome.class);
         // начинаем цикл обработки событий
+        ILogger logger = new LoggerToConsole();
         SensorEvent event = getNextSensorEvent();
         while (event != null) {
-            System.out.println("Got event: " + event);
+            logger.log("Got event: " + event);
             if (event.getType() == LIGHT_ON || event.getType() == LIGHT_OFF) {
                 // событие от источника света
                 for (Room room : smartHome.getRooms()) {
@@ -26,10 +26,10 @@ public class Application {
                         if (light.getId().equals(event.getObjectId())) {
                             if (event.getType() == LIGHT_ON) {
                                 light.setOn(true);
-                                System.out.println("Light " + light.getId() + " in room " + room.getName() + " was turned on.");
+                                logger.log("Light " + light.getId() + " in room " + room.getName() + " was turned on.");
                             } else {
                                 light.setOn(false);
-                                System.out.println("Light " + light.getId() + " in room " + room.getName() + " was turned off.");
+                                logger.log("Light " + light.getId() + " in room " + room.getName() + " was turned off.");
                             }
                         }
                     }
@@ -42,10 +42,10 @@ public class Application {
                         if (door.getId().equals(event.getObjectId())) {
                             if (event.getType() == DOOR_OPEN) {
                                 door.setOpen(true);
-                                System.out.println("Door " + door.getId() + " in room " + room.getName() + " was opened.");
+                                logger.log("Door " + door.getId() + " in room " + room.getName() + " was opened.");
                             } else {
                                 door.setOpen(false);
-                                System.out.println("Door " + door.getId() + " in room " + room.getName() + " was closed.");
+                                logger.log("Door " + door.getId() + " in room " + room.getName() + " was closed.");
                                 // если мы получили событие о закрытие двери в холле - это значит, что была закрыта входная дверь.
                                 // в этом случае мы хотим автоматически выключить свет во всем доме (это же умный дом!)
                                 if (room.getName().equals("hall")) {
