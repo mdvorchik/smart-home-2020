@@ -2,22 +2,22 @@ package ru.sbt.mipt.oop;
 
 import java.util.Collection;
 
-public class RoomImpl implements Room {
-    private Collection<Light> lights;
-    private Collection<Door> doors;
+public class RoomImpl {
+    private Collection<LightImpl> lights;
+    private Collection<DoorImpl> doors;
     private String name;
 
-    public RoomImpl(Collection<Light> lights, Collection<Door> doors, String name) {
+    public RoomImpl(Collection<LightImpl> lights, Collection<DoorImpl> doors, String name) {
         this.lights = lights;
         this.doors = doors;
         this.name = name;
     }
 
-    public Collection<Light> getLights() {
+    public Collection<LightImpl> getLights() {
         return lights;
     }
 
-    public Collection<Door> getDoors() {
+    public Collection<DoorImpl> getDoors() {
         return doors;
     }
 

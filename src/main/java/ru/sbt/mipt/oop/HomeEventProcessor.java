@@ -9,7 +9,7 @@ public class HomeEventProcessor implements EventProcessor{
     private final LightEventProcessor lightEventProcessor;
     private final DoorEventProcessor doorEventProcessor;
     private Event event;
-    private SmartHome smartHome;
+    private SmartHomeImpl smartHome;
 
     public HomeEventProcessor(Logger logger) {
         this.eventCreator = new EventCreatorImpl();
@@ -20,7 +20,7 @@ public class HomeEventProcessor implements EventProcessor{
 
     @Override
     public void processEvent(Object smartHome) {
-        this.smartHome = (SmartHome) smartHome;
+        this.smartHome = (SmartHomeImpl) smartHome;
         event = eventCreator.getNextEvent();
         while (event != null) {
             logger.log("Got event: " + event);

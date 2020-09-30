@@ -9,7 +9,7 @@ public class Application {
     private final Logger logger;
     private final StateReader stateReader;
     private EventProcessor eventProcessor;
-    private SmartHome smartHome;
+    private SmartHomeImpl smartHome;
     private Event event;
 
     public Application(Logger loger, StateReader stateReader){

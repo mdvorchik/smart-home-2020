@@ -1,8 +1,7 @@
 package ru.sbt.mipt.oop;
 
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -10,21 +9,21 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class JsonWriter implements StateWriter{
+public class XmlWriter implements StateWriter{
     private final Logger logger;
 
-    public JsonWriter(Logger logger) {
+    public XmlWriter(Logger logger) {
         this.logger = logger;
     }
 
     @Override
     public void writeStateToDestination(SmartHomeImpl smartHome, Object destination) throws IOException {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String jsonString = gson.toJson(smartHome);
-        logger.log(jsonString);
+        XStream xstream = new XStream();
+        String xmlString = xstream.toXML(smartHome);
+        logger.log(xmlString);
         Path path = Paths.get(destination.toString());
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-            writer.write(jsonString);
+            writer.write(xmlString);
         }
     }
 }
