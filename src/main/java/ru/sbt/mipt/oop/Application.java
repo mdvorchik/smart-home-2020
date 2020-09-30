@@ -13,7 +13,8 @@ public class Application {
         StateReader stateReader = new JsonReader();
         SmartHome smartHome = stateReader.readStateOfHome("smart-home-1.js");
         // начинаем цикл обработки событий
-        SensorEvent event = getNextSensorEvent();
+        EventCreator eventCreator = new EventCreatorImpl();
+        Event event = eventCreator.getNextEvent();
         while (event != null) {
             logger.log("Got event: " + event);
             if (event.getType() == LIGHT_ON || event.getType() == LIGHT_OFF) {
@@ -25,7 +26,7 @@ public class Application {
                 // событие от двери
                 processingDoorEvent(event, smartHome);
             }
-            event = getNextSensorEvent();
+            event = eventCreator.getNextEvent();
         }
     }
 
@@ -33,15 +34,7 @@ public class Application {
         logger.log("Pretent we're sending command " + command);
     }
 
-    private static SensorEvent getNextSensorEvent() {
-        // pretend like we're getting the events from physical world, but here we're going to just generate some random events
-        if (Math.random() < 0.05) return null; // null means end of event stream
-        SensorEventType sensorEventType = SensorEventType.values()[(int) (4 * Math.random())];
-        String objectId = "" + ((int) (10 * Math.random()));
-        return new SensorEvent(sensorEventType, objectId);
-    }
-
-    private static void processingLightEvent (SensorEvent event, SmartHome smartHome) {
+    private static void processingLightEvent (Event event, SmartHome smartHome) {
         for (Room room : smartHome.getRooms()) {
             for (Light light : room.getLights()) {
                 if (light.getId().equals(event.getObjectId())) {
@@ -57,7 +50,7 @@ public class Application {
         }
     }
 
-    private static void processingDoorEvent (SensorEvent event, SmartHome smartHome) {
+    private static void processingDoorEvent (Event event, SmartHome smartHome) {
         for (Room room : smartHome.getRooms()) {
             for (Door door : room.getDoors()) {
                 if (door.getId().equals(event.getObjectId())) {

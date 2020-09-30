@@ -12,8 +12,6 @@ import java.util.Arrays;
 
 public class HomeBuilder {
 
-    public static Logger logger = new LoggerToConsole();
-
     public static void main(String[] args) throws IOException {
         Room kitchen = new RoomImpl(Arrays.asList(new LightImpl("1", false), new LightImpl("2", true)),
                 Arrays.asList(new DoorImpl(false, "1")),
@@ -28,13 +26,8 @@ public class HomeBuilder {
                 Arrays.asList(new DoorImpl(false, "4")),
                 "hall");
         SmartHome smartHome = new SmartHomeImpl(Arrays.asList(kitchen, bathroom, bedroom, hall));
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String jsonString = gson.toJson(smartHome);
-        System.out.println(jsonString);
-        Path path = Paths.get("output.js");
-        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-            writer.write(jsonString);
-        }
+        StateWriter stateWriter = new JsonWriter();
+        stateWriter.writeStateToDestination(smartHome, "output.js");
     }
 
 }
