@@ -75,7 +75,7 @@ class HallChecker
 **Нет**
 
 ```java
-package ru.sbt.mipt.oop.SmartHome;
+package ru.sbt.mipt.oop.SmartHomeImpl;
 ```
 
 ### Не используйте статические методы в бизнес логике

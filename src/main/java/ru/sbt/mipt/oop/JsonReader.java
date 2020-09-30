@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class JsonReader implements IStateReader {
+public class JsonReader implements StateReader {
     @Override
-    public SmartHome readStateOfHome(Object source) throws IOException {
+    public SmartHomeImpl readStateOfHome(Object source) throws IOException {
         Gson gson = new Gson();
         String pathToJsonFile = source.toString();
         String json = new String(Files.readAllBytes(Paths.get(pathToJsonFile)));
-        SmartHome targetObject = gson.fromJson(json, SmartHome.class);
+        SmartHomeImpl targetObject = gson.fromJson(json, SmartHomeImpl.class);
         return targetObject;
     }
 }

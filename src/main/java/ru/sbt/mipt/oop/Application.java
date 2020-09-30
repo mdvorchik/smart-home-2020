@@ -1,21 +1,17 @@
 package ru.sbt.mipt.oop;
 
-import com.google.gson.Gson;
-
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import static ru.sbt.mipt.oop.SensorEventType.*;
 
 public class Application {
 
-    static ILogger logger = new LoggerToConsole();
+    static Logger logger = new LoggerToConsole();
 
     public static void main(String... args) throws IOException {
         // считываем состояние дома из файла
-        IStateReader stateReader = new JsonReader();
-        ISmartHome smartHome = stateReader.readStateOfHome("smart-home-1.js");
+        StateReader stateReader = new JsonReader();
+        SmartHome smartHome = stateReader.readStateOfHome("smart-home-1.js");
         // начинаем цикл обработки событий
         SensorEvent event = getNextSensorEvent();
         while (event != null) {
@@ -45,9 +41,9 @@ public class Application {
         return new SensorEvent(sensorEventType, objectId);
     }
 
-    private static void processingLightEvent (SensorEvent event, ISmartHome smartHome) {
-        for (IRoom room : smartHome.getRooms()) {
-            for (ILight light : room.getLights()) {
+    private static void processingLightEvent (SensorEvent event, SmartHome smartHome) {
+        for (Room room : smartHome.getRooms()) {
+            for (Light light : room.getLights()) {
                 if (light.getId().equals(event.getObjectId())) {
                     if (event.getType() == LIGHT_ON) {
                         light.setOn(true);
@@ -61,9 +57,9 @@ public class Application {
         }
     }
 
-    private static void processingDoorEvent (SensorEvent event, ISmartHome smartHome) {
-        for (IRoom room : smartHome.getRooms()) {
-            for (IDoor door : room.getDoors()) {
+    private static void processingDoorEvent (SensorEvent event, SmartHome smartHome) {
+        for (Room room : smartHome.getRooms()) {
+            for (Door door : room.getDoors()) {
                 if (door.getId().equals(event.getObjectId())) {
                     if (event.getType() == DOOR_OPEN) {
                         door.setOpen(true);
@@ -80,9 +76,9 @@ public class Application {
         }
     }
 
-    private static void turnOffLight (ISmartHome smartHome) {
-        for (IRoom homeRoom : smartHome.getRooms()) {
-            for (ILight light : homeRoom.getLights()) {
+    private static void turnOffLight (SmartHome smartHome) {
+        for (Room homeRoom : smartHome.getRooms()) {
+            for (Light light : homeRoom.getLights()) {
                 light.setOn(false);
                 SensorCommand command = new SensorCommand(CommandType.LIGHT_OFF, light.getId());
                 sendCommand(command);

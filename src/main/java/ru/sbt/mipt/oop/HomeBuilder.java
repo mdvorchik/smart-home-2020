@@ -9,26 +9,25 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.logging.Logger;
 
 public class HomeBuilder {
 
-    public static ILogger logger = new LoggerToConsole();
+    public static Logger logger = new LoggerToConsole();
 
     public static void main(String[] args) throws IOException {
-        IRoom kitchen = new Room(Arrays.asList(new Light("1", false), new Light("2", true)),
-                Arrays.asList(new Door(false, "1")),
+        Room kitchen = new RoomImpl(Arrays.asList(new LightImpl("1", false), new LightImpl("2", true)),
+                Arrays.asList(new DoorImpl(false, "1")),
                 "kitchen");
-        IRoom bathroom = new Room(Arrays.asList(new Light("3", true)),
-                Arrays.asList(new Door(false, "2")),
+        Room bathroom = new RoomImpl(Arrays.asList(new LightImpl("3", true)),
+                Arrays.asList(new DoorImpl(false, "2")),
                 "bathroom");
-        IRoom bedroom = new Room(Arrays.asList(new Light("4", false), new Light("5", false), new Light("6", false)),
-                Arrays.asList(new Door(true, "3")),
+        Room bedroom = new RoomImpl(Arrays.asList(new LightImpl("4", false), new LightImpl("5", false), new LightImpl("6", false)),
+                Arrays.asList(new DoorImpl(true, "3")),
                 "bedroom");
-        IRoom hall = new Room(Arrays.asList(new Light("7", false), new Light("8", false), new Light("9", false)),
-                Arrays.asList(new Door(false, "4")),
+        Room hall = new RoomImpl(Arrays.asList(new LightImpl("7", false), new LightImpl("8", false), new LightImpl("9", false)),
+                Arrays.asList(new DoorImpl(false, "4")),
                 "hall");
-        ISmartHome smartHome = new SmartHome(Arrays.asList(kitchen, bathroom, bedroom, hall));
+        SmartHome smartHome = new SmartHomeImpl(Arrays.asList(kitchen, bathroom, bedroom, hall));
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String jsonString = gson.toJson(smartHome);
         System.out.println(jsonString);

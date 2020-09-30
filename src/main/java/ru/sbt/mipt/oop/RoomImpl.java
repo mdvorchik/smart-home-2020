@@ -1,0 +1,33 @@
+package ru.sbt.mipt.oop;
+
+import java.util.Collection;
+
+public class RoomImpl implements Room {
+    private Collection<Light> lights;
+    private Collection<Door> doors;
+    private String name;
+
+    public RoomImpl(Collection<Light> lights, Collection<Door> doors, String name) {
+        this.lights = lights;
+        this.doors = doors;
+        this.name = name;
+    }
+
+    public Collection<Light> getLights() {
+        return lights;
+    }
+
+    public Collection<Door> getDoors() {
+        return doors;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+//    @Override
+//    public Object createInstance(Type type) {
+//        Room room = new Room(new ArrayList<Light>(), new ArrayList<Door>(), "");
+//        return new Room();
+//    }
+}
