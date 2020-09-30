@@ -10,7 +10,6 @@ public class Application {
     private final StateReader stateReader;
     private EventProcessor eventProcessor;
     private SmartHomeImpl smartHome;
-    private Event event;
 
     public Application(Logger loger, StateReader stateReader){
         this.logger = loger;

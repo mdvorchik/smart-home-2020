@@ -3,9 +3,9 @@ package ru.sbt.mipt.oop;
 import java.util.Collection;
 
 public class RoomImpl {
-    private Collection<LightImpl> lights;
-    private Collection<DoorImpl> doors;
-    private String name;
+    private final Collection<LightImpl> lights;
+    private final Collection<DoorImpl> doors;
+    private final String name;
 
     public RoomImpl(Collection<LightImpl> lights, Collection<DoorImpl> doors, String name) {
         this.lights = lights;
@@ -25,9 +25,4 @@ public class RoomImpl {
         return name;
     }
 
-//    @Override
-//    public Object createInstance(Type type) {
-//        Room room = new Room(new ArrayList<Light>(), new ArrayList<Door>(), "");
-//        return new Room();
-//    }
 }

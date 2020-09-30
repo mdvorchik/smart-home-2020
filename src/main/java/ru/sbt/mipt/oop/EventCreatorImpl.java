@@ -7,7 +7,6 @@ public class EventCreatorImpl implements EventCreator {
         if (Math.random() < 0.05) return null; // null means end of event stream
         SensorEventType sensorEventType = SensorEventType.values()[(int) (4 * Math.random())];
         String objectId = "" + ((int) (10 * Math.random()));
-        Event event = new SensorEvent(sensorEventType, objectId);
-        return event;
+        return new SensorEvent(sensorEventType, objectId);
     }
 }

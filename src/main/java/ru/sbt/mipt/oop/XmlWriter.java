@@ -1,8 +1,6 @@
 package ru.sbt.mipt.oop;
 
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
