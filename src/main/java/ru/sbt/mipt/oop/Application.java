@@ -18,7 +18,7 @@ public class Application {
         // считываем состояние дома из файла
         smartHome = stateReader.readStateOfHome("smart-home-1.js");
         // начинаем цикл обработки событий
-        eventProcessor = new HomeEventProcessor(logger);
+        eventProcessor = new HomeEventProcessor(new EventCreatorImpl(), logger, new LightEventProcessor(logger), new DoorEventProcessor(logger));
         eventProcessor.processEvent(smartHome);
     }
 

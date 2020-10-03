@@ -8,30 +8,28 @@ public class HomeEventProcessor implements EventProcessor{
     private final Logger logger;
     private final LightEventProcessor lightEventProcessor;
     private final DoorEventProcessor doorEventProcessor;
-    private Event event;
-    private SmartHome smartHome;
 
-    public HomeEventProcessor(Logger logger) {
-        this.eventCreator = new EventCreatorImpl();
+    public HomeEventProcessor(EventCreator eventCreator, Logger logger, LightEventProcessor lightEventProcessor, DoorEventProcessor doorEventProcessor) {
+        this.eventCreator = eventCreator;
         this.logger = logger;
-        this.lightEventProcessor = new LightEventProcessor(logger);
-        this.doorEventProcessor = new DoorEventProcessor(logger);
+        this.lightEventProcessor = lightEventProcessor;
+        this.doorEventProcessor = doorEventProcessor;
     }
 
     @Override
     public void processEvent(Object smartHome) {
-        this.smartHome = (SmartHome) smartHome;
-        event = eventCreator.getNextEvent();
+        SmartHome smartHome1 = (SmartHome) smartHome;
+        Event event = eventCreator.getNextEvent();
         while (event != null) {
             logger.log("Got event: " + event);
             if (event.getType() == LIGHT_ON || event.getType() == LIGHT_OFF) {
                 // событие от источника света
-                lightEventProcessor.processEvent(event, this.smartHome);
+                lightEventProcessor.processEvent(event, smartHome1);
 
             }
             if (event.getType() == DOOR_OPEN || event.getType() == DOOR_CLOSED) {
                 // событие от двери
-                doorEventProcessor.processEvent(event, this.smartHome);
+                doorEventProcessor.processEvent(event, smartHome1);
             }
             event = eventCreator.getNextEvent();
         }
