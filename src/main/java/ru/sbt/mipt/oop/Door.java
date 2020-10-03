@@ -1,6 +1,7 @@
 package ru.sbt.mipt.oop;
 
 public class Door {
+
     private final String id;
     private boolean isOpen;
 
