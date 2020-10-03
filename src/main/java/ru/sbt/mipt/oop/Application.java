@@ -1,30 +1,35 @@
 package ru.sbt.mipt.oop;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
 
     private final Logger logger;
     private final StateReader stateReader;
-    private EventProcessor eventProcessor;
-    private SmartHome smartHome;
+    private final EventCreator eventCreator;
 
-    public Application(Logger loger, StateReader stateReader){
+    public Application(Logger loger, StateReader stateReader, EventCreator eventCreator){
         this.logger = loger;
         this.stateReader = stateReader;
+        this.eventCreator = eventCreator;
     }
 
     public void run() throws IOException {
         // считываем состояние дома из файла
-        smartHome = stateReader.readStateOfHome("smart-home-1.js");
+        SmartHome smartHome = stateReader.readStateOfHome("smart-home-1.js");
+        // создаем список обработчиков возможный событий
+        List<EventProcessor> eventProcessorList = new ArrayList<>();
+        eventProcessorList.add(new DoorEventProcessor(logger));
+        eventProcessorList.add(new LightEventProcessor(logger));
         // начинаем цикл обработки событий
-        eventProcessor = new HomeEventProcessor(new EventCreatorImpl(), logger, new LightEventProcessor(logger), new DoorEventProcessor(logger));
-        eventProcessor.processEvent(smartHome);
+        EventProcessor eventProcessor = new GenericEventProcessor(new EventCreatorImpl(), logger, eventProcessorList);
+        eventProcessor.processEvent(eventCreator.getNextEvent(), smartHome);
     }
 
     public static void main(String... args) throws IOException {
-        Application application = new Application(new LoggerToConsole(), new JsonReader());
+        Application application = new Application(new LoggerToConsole(), new JsonReader(), new EventCreatorImpl());
         application.run();
-
     }
 }
