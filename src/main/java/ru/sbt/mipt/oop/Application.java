@@ -16,12 +16,17 @@ public class Application {
         this.stateReader = stateReader;
     }
 
+    public void run() throws IOException {
+        // считываем состояние дома из файла
+        smartHome = stateReader.readStateOfHome("smart-home-1.js");
+        // начинаем цикл обработки событий
+        eventProcessor = new HomeEventProcessor(logger);
+        eventProcessor.processEvent(smartHome);
+    }
+
     public static void main(String... args) throws IOException {
         Application application = new Application(new LoggerToConsole(), new JsonReader());
-        // считываем состояние дома из файла
-        application.smartHome = application.stateReader.readStateOfHome("smart-home-1.js");
-        // начинаем цикл обработки событий
-        application.eventProcessor = new HomeEventProcessor(application.logger);
-        application.eventProcessor.processEvent(application.smartHome);
+        application.run();
+
     }
 }
