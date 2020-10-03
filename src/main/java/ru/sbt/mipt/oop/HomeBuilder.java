@@ -5,11 +5,11 @@ import java.util.Arrays;
 
 public class HomeBuilder {
     private final StateWriter stateWriter;
-    private SmartHomeImpl smartHome;
-    private RoomImpl kitchen;
-    private RoomImpl bathroom;
-    private RoomImpl bedroom;
-    private RoomImpl hall;
+    private SmartHome smartHome;
+    private Room kitchen;
+    private Room bathroom;
+    private Room bedroom;
+    private Room hall;
 
     public HomeBuilder(StateWriter stateWriter) {
         this.stateWriter = stateWriter;
@@ -18,19 +18,19 @@ public class HomeBuilder {
     public static void main(String[] args) throws IOException {
         HomeBuilder homeBuilder = new HomeBuilder(new JsonWriter(new LoggerToConsole()));
 
-        homeBuilder.kitchen = new RoomImpl(Arrays.asList(new LightImpl("1", false), new LightImpl("2", true)),
-                Arrays.asList(new DoorImpl(false, "1")),
+        homeBuilder.kitchen = new Room(Arrays.asList(new Light("1", false), new Light("2", true)),
+                Arrays.asList(new Door(false, "1")),
                 "kitchen");
-        homeBuilder.bathroom = new RoomImpl(Arrays.asList(new LightImpl("3", true)),
-                Arrays.asList(new DoorImpl(false, "2")),
+        homeBuilder.bathroom = new Room(Arrays.asList(new Light("3", true)),
+                Arrays.asList(new Door(false, "2")),
                 "bathroom");
-        homeBuilder.bedroom = new RoomImpl(Arrays.asList(new LightImpl("4", false), new LightImpl("5", false), new LightImpl("6", false)),
-                Arrays.asList(new DoorImpl(true, "3")),
+        homeBuilder.bedroom = new Room(Arrays.asList(new Light("4", false), new Light("5", false), new Light("6", false)),
+                Arrays.asList(new Door(true, "3")),
                 "bedroom");
-        homeBuilder.hall = new RoomImpl(Arrays.asList(new LightImpl("7", false), new LightImpl("8", false), new LightImpl("9", false)),
-                Arrays.asList(new DoorImpl(false, "4")),
+        homeBuilder.hall = new Room(Arrays.asList(new Light("7", false), new Light("8", false), new Light("9", false)),
+                Arrays.asList(new Door(false, "4")),
                 "hall");
-        homeBuilder.smartHome = new SmartHomeImpl(Arrays.asList(homeBuilder.kitchen, homeBuilder.bathroom, homeBuilder.bedroom, homeBuilder.hall));
+        homeBuilder.smartHome = new SmartHome(Arrays.asList(homeBuilder.kitchen, homeBuilder.bathroom, homeBuilder.bedroom, homeBuilder.hall));
         homeBuilder.stateWriter.writeStateToDestination(homeBuilder.smartHome, "output.js");
     }
 

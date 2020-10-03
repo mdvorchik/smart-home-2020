@@ -2,14 +2,12 @@ package ru.sbt.mipt.oop;
 
 import java.io.IOException;
 
-import static ru.sbt.mipt.oop.SensorEventType.*;
-
 public class Application {
 
     private final Logger logger;
     private final StateReader stateReader;
     private EventProcessor eventProcessor;
-    private SmartHomeImpl smartHome;
+    private SmartHome smartHome;
 
     public Application(Logger loger, StateReader stateReader){
         this.logger = loger;

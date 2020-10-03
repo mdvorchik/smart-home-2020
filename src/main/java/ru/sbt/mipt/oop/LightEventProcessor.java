@@ -17,8 +17,8 @@ public class LightEventProcessor implements EventProcessor {
 
     @Override
     public void processEvent(Event event, Object objectWhereTheEventOccurs) {
-        SmartHomeImpl smartHome = (SmartHomeImpl) objectWhereTheEventOccurs;
-        for (RoomImpl room : smartHome.getRooms()) {
+        SmartHome smartHome = (SmartHome) objectWhereTheEventOccurs;
+        for (Room room : smartHome.getRooms()) {
             for (Light light : room.getLights()) {
                 if (light.getId().equals(event.getObjectId())) {
                     if (event.getType() == LIGHT_ON) {

@@ -18,7 +18,7 @@ public class JsonWriter implements StateWriter{
     }
 
     @Override
-    public void writeStateToDestination(SmartHomeImpl smartHome, Object destination) throws IOException {
+    public void writeStateToDestination(SmartHome smartHome, Object destination) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String jsonString = gson.toJson(smartHome);
         logger.log(jsonString);

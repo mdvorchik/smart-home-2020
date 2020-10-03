@@ -17,8 +17,8 @@ public class DoorEventProcessor implements EventProcessor{
 
     @Override
     public void processEvent(Event event, Object objectWhereTheEventOccurs) {
-        SmartHomeImpl smartHome = (SmartHomeImpl) objectWhereTheEventOccurs;
-        for (RoomImpl room : smartHome.getRooms()) {
+        SmartHome smartHome = (SmartHome) objectWhereTheEventOccurs;
+        for (Room room : smartHome.getRooms()) {
             for (Door door : room.getDoors()) {
                 if (door.getId().equals(event.getObjectId())) {
                     if (event.getType() == DOOR_OPEN) {
@@ -40,8 +40,8 @@ public class DoorEventProcessor implements EventProcessor{
         logger.log("Pretent we're sending command " + command);
     }
 
-    private void turnOffLight (SmartHomeImpl smartHome) {
-        for (RoomImpl homeRoom : smartHome.getRooms()) {
+    private void turnOffLight (SmartHome smartHome) {
+        for (Room homeRoom : smartHome.getRooms()) {
             for (Light light : homeRoom.getLights()) {
                 light.setOn(false);
                 SensorCommand command = new SensorCommand(CommandType.LIGHT_OFF, light.getId());
