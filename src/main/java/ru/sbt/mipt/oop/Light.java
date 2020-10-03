@@ -1,7 +1,7 @@
 package ru.sbt.mipt.oop;
 
 public interface Light {
-    public boolean isOn();
-    public String getId();
-    public void setOn(boolean on);
+    boolean isOn();
+    String getId();
+    void setOn(boolean on);
 }
