@@ -7,7 +7,6 @@ import ru.sbt.mipt.oop.utils.Logger;
 import ru.sbt.mipt.oop.utils.LoggerToConsole;
 import ru.sbt.mipt.oop.utils.StateReader;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class Application {
         this.eventCreator = eventCreator;
     }
 
-    public void run() throws IOException {
+    public void run() {
         // считываем состояние дома из файла
         SmartHome smartHome = stateReader.readStateOfHome("smart-home-1.js");
         // создаем список обработчиков возможный событий
@@ -35,7 +34,7 @@ public class Application {
         eventProcessor.processEvent(eventCreator.getNextEvent(), smartHome);
     }
 
-    public static void main(String... args) throws IOException {
+    public static void main(String... args) {
         Application application = new Application(new LoggerToConsole(), new JsonReader(), new EventCreatorImpl());
         application.run();
     }
