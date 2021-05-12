@@ -18,13 +18,13 @@ public class AggregateEventProcessorImpl implements AggregateEventProcessor {
     @Override
     public void processEvents(EventCreator eventCreator, Object objectWhereIsEvents) {
         SmartHome smartHome = (SmartHome) objectWhereIsEvents;
-        Event event = eventCreator.getNextEvent();
+        Event event = eventCreator.createNextEvent();
         do {
             logger.log("Got event: " + event);
             for (EventProcessor eventProcessor : eventProcessors) {
                 eventProcessor.processEvent(event, smartHome);
             }
-            event = eventCreator.getNextEvent();
+            event = eventCreator.createNextEvent();
         } while (event != null);
     }
 }
