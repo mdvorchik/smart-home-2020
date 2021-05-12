@@ -7,19 +7,17 @@ import java.util.List;
 
 public class AggregateEventProcessorImpl implements AggregateEventProcessor {
 
-    private final EventCreator eventCreator;
     private final Logger logger;
     private final List<EventProcessor> eventProcessors;
 
-    public AggregateEventProcessorImpl(EventCreator eventCreator, Logger logger, List<EventProcessor> eventProcessors) {
-        this.eventCreator = eventCreator;
+    public AggregateEventProcessorImpl(Logger logger, List<EventProcessor> eventProcessors) {
         this.logger = logger;
         this.eventProcessors = eventProcessors;
     }
 
     @Override
-    public void processEvents(Object objectWhereIsEvent) {
-        SmartHome smartHome = (SmartHome) objectWhereIsEvent;
+    public void processEvents(EventCreator eventCreator, Object objectWhereIsEvents) {
+        SmartHome smartHome = (SmartHome) objectWhereIsEvents;
         Event event = eventCreator.getNextEvent();
         do {
             logger.log("Got event: " + event);
