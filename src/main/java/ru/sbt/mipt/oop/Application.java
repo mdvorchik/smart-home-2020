@@ -14,12 +14,10 @@ public class Application {
 
     private final Logger logger;
     private final StateReader stateReader;
-    private final EventCreator eventCreator;
 
-    public Application(Logger loger, StateReader stateReader, EventCreator eventCreator){
+    public Application(Logger loger, StateReader stateReader){
         this.logger = loger;
         this.stateReader = stateReader;
-        this.eventCreator = eventCreator;
     }
 
     public void run() {
@@ -30,12 +28,12 @@ public class Application {
         eventProcessorList.add(new DoorEventProcessor(logger));
         eventProcessorList.add(new LightEventProcessor(logger));
         // начинаем цикл обработки событий
-        EventProcessor eventProcessor = new GenericEventProcessor(new EventCreatorImpl(), logger, eventProcessorList);
-        eventProcessor.processEvent(eventCreator.getNextEvent(), smartHome);
+        AggregateEventProcessor eventProcessor = new AggregateEventProcessorImpl(new EventCreatorImpl(), logger, eventProcessorList);
+        eventProcessor.processEvents(smartHome);
     }
 
     public static void main(String... args) {
-        Application application = new Application(new LoggerToConsole(), new JsonReader(), new EventCreatorImpl());
+        Application application = new Application(new LoggerToConsole(), new JsonReader());
         application.run();
     }
 }
