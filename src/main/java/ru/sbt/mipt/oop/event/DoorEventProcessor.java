@@ -1,5 +1,7 @@
 package ru.sbt.mipt.oop.event;
 
+import ru.sbt.mipt.oop.command.Command;
+import ru.sbt.mipt.oop.command.CommandSender;
 import ru.sbt.mipt.oop.command.CommandType;
 import ru.sbt.mipt.oop.command.SensorCommand;
 import ru.sbt.mipt.oop.house.Door;
@@ -14,9 +16,11 @@ import static ru.sbt.mipt.oop.event.SensorEventType.DOOR_OPEN;
 public class DoorEventProcessor implements EventProcessor {
 
     private final Logger logger;
+    private final CommandSender commandSender;
 
-    public DoorEventProcessor(Logger logger) {
+    public DoorEventProcessor(Logger logger, CommandSender commandSender) {
         this.logger = logger;
+        this.commandSender = commandSender;
     }
 
     @Override
@@ -41,16 +45,12 @@ public class DoorEventProcessor implements EventProcessor {
         }
     }
 
-    private void sendCommand(SensorCommand command) {
-        logger.log("Pretent we're sending command " + command);
-    }
-
     private void turnOffLight (SmartHome smartHome) {
         for (Room homeRoom : smartHome.getRooms()) {
             for (Light light : homeRoom.getLights()) {
                 light.setOn(false);
-                SensorCommand command = new SensorCommand(CommandType.LIGHT_OFF, light.getId());
-                sendCommand(command);
+                Command command = new SensorCommand(CommandType.LIGHT_OFF, light.getId());
+                commandSender.sendCommand(command);
             }
         }
     }

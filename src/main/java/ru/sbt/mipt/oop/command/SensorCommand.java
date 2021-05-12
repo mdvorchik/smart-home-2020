@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop.command;
 
-public class SensorCommand {
+public class SensorCommand implements Command {
     private final CommandType type;
     private final String objectId;
 

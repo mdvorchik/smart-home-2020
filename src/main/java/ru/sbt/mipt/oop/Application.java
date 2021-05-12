@@ -1,5 +1,6 @@
 package ru.sbt.mipt.oop;
 
+import ru.sbt.mipt.oop.command.SmartHomeCommandSender;
 import ru.sbt.mipt.oop.event.*;
 import ru.sbt.mipt.oop.house.SmartHome;
 import ru.sbt.mipt.oop.utils.JsonReader;
@@ -27,7 +28,7 @@ public class Application {
         SmartHome smartHome = stateReader.readStateOfHome("smart-home-1.js");
         // создаем список обработчиков возможный событий
         List<EventProcessor> eventProcessorList = new ArrayList<>();
-        eventProcessorList.add(new DoorEventProcessor(logger));
+        eventProcessorList.add(new DoorEventProcessor(logger, new SmartHomeCommandSender(logger)));
         eventProcessorList.add(new LightEventProcessor(logger));
         // начинаем цикл обработки событий
         AggregateEventProcessor eventProcessor = new AggregateEventProcessorImpl(logger, eventProcessorList);
