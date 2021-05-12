@@ -1,4 +1,4 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.event;
 
 public class EventCreatorImpl implements EventCreator {
     @Override

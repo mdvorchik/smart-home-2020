@@ -1,5 +1,12 @@
 package ru.sbt.mipt.oop;
 
+import ru.sbt.mipt.oop.event.*;
+import ru.sbt.mipt.oop.house.SmartHome;
+import ru.sbt.mipt.oop.utils.JsonReader;
+import ru.sbt.mipt.oop.utils.Logger;
+import ru.sbt.mipt.oop.utils.LoggerToConsole;
+import ru.sbt.mipt.oop.utils.StateReader;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

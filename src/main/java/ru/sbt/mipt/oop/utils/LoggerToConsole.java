@@ -1,4 +1,6 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.utils;
+
+import ru.sbt.mipt.oop.utils.Logger;
 
 public class LoggerToConsole implements Logger {
     @Override

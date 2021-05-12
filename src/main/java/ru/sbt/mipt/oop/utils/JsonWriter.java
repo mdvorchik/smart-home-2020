@@ -1,8 +1,9 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.utils;
 
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import ru.sbt.mipt.oop.house.SmartHome;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -10,7 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class JsonWriter implements StateWriter{
+public class JsonWriter implements StateWriter {
     private final Logger logger;
 
     public JsonWriter(Logger logger) {

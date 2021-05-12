@@ -1,8 +1,11 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.event;
+
+import ru.sbt.mipt.oop.utils.Logger;
+import ru.sbt.mipt.oop.house.SmartHome;
 
 import java.util.List;
 
-public class GenericEventProcessor implements  EventProcessor{
+public class GenericEventProcessor implements EventProcessor {
 
     private final EventCreator eventCreator;
     private final Logger logger;

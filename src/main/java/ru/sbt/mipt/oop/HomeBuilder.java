@@ -1,5 +1,13 @@
 package ru.sbt.mipt.oop;
 
+import ru.sbt.mipt.oop.house.Door;
+import ru.sbt.mipt.oop.house.Light;
+import ru.sbt.mipt.oop.house.Room;
+import ru.sbt.mipt.oop.house.SmartHome;
+import ru.sbt.mipt.oop.utils.JsonWriter;
+import ru.sbt.mipt.oop.utils.LoggerToConsole;
+import ru.sbt.mipt.oop.utils.StateWriter;
+
 import java.io.IOException;
 import java.util.Arrays;
 
