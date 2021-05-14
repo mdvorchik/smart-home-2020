@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class SmartHome implements Actionable {
-    Collection<Actionable> rooms;
+    Collection<Room> rooms;
 
     public SmartHome() {
         rooms = new ArrayList<>();
     }
 
-    public SmartHome(Collection<Actionable> rooms) {
+    public SmartHome(Collection<Room> rooms) {
         this.rooms = rooms;
     }
 
@@ -21,7 +21,7 @@ public class SmartHome implements Actionable {
         rooms.add(room);
     }
 
-    public Collection<Actionable> getRooms() {
+    public Collection<Room> getRooms() {
         return rooms;
     }
 

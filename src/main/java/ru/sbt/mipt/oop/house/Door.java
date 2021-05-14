@@ -2,6 +2,8 @@ package ru.sbt.mipt.oop.house;
 
 import ru.sbt.mipt.oop.action.Action;
 import ru.sbt.mipt.oop.action.Actionable;
+import ru.sbt.mipt.oop.action.DoorCloseAction;
+import ru.sbt.mipt.oop.action.DoorOpenAction;
 
 public class Door implements Actionable {
 
@@ -21,8 +23,21 @@ public class Door implements Actionable {
         isOpen = open;
     }
 
+    public String getRoomName(SmartHome smartHome) {
+        for (Actionable room: smartHome.getRooms()) {
+            if (room instanceof Room && ((Room) room).containsDoorWithId(id))
+                return ((Room) room).getName();
+        }
+        return "not found";
+    }
+
     @Override
     public void execute(Action action) {
-        if (action instanceof )
+        if (action instanceof DoorOpenAction) {
+            action.execute(this);
+        }
+        if (action instanceof DoorCloseAction) {
+            action.execute(this);
+        }
     }
 }

@@ -6,10 +6,10 @@ import ru.sbt.mipt.oop.command.CommandType;
 import ru.sbt.mipt.oop.command.SensorCommand;
 import ru.sbt.mipt.oop.house.Light;
 
-public class ForceEveryLightOffAction implements Action{
+public class EveryLightOffAction implements Action{
     private CommandSender commandSender;
 
-    public ForceEveryLightOffAction(CommandSender commandSender) {
+    public EveryLightOffAction(CommandSender commandSender) {
         this.commandSender = commandSender;
     }
 
