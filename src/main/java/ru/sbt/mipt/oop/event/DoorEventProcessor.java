@@ -1,5 +1,6 @@
 package ru.sbt.mipt.oop.event;
 
+import ru.sbt.mipt.oop.action.ForceEveryLightOffAction;
 import ru.sbt.mipt.oop.command.Command;
 import ru.sbt.mipt.oop.command.CommandSender;
 import ru.sbt.mipt.oop.command.CommandType;
@@ -46,12 +47,6 @@ public class DoorEventProcessor implements EventProcessor {
     }
 
     private void turnOffLight (SmartHome smartHome) {
-        for (Room homeRoom : smartHome.getRooms()) {
-            for (Light light : homeRoom.getLights()) {
-                light.setOn(false);
-                Command command = new SensorCommand(CommandType.LIGHT_OFF, light.getId());
-                commandSender.sendCommand(command);
-            }
-        }
+        smartHome.execute(new ForceEveryLightOffAction(commandSender));
     }
 }

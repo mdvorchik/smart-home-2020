@@ -1,6 +1,11 @@
 package ru.sbt.mipt.oop.house;
 
-public class Light {
+import ru.sbt.mipt.oop.action.Action;
+import ru.sbt.mipt.oop.action.Actionable;
+import ru.sbt.mipt.oop.action.LightOffAction;
+import ru.sbt.mipt.oop.action.LightOnAction;
+
+public class Light implements Actionable {
     private boolean isOn;
     private final String id;
 
@@ -19,5 +24,15 @@ public class Light {
 
     public void setOn(boolean on) {
         isOn = on;
+    }
+
+    @Override
+    public void execute(Action action) {
+        if (action instanceof LightOffAction) {
+            action.execute(this);
+        }
+        if (action instanceof LightOnAction) {
+            action.execute(this);
+        }
     }
 }
