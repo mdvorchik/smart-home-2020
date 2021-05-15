@@ -24,17 +24,13 @@ public class AggregateEventProcessorImplTest extends TestCase {
         eventProcessors.add(doorEventProcessor);
         AggregateEventProcessorImpl aggregateEventProcessor = new AggregateEventProcessorImpl(logger, eventProcessors);
         SmartHome smartHome = Mockito.mock(SmartHome.class);
+        EventCreator eventCreator = Mockito.mock(EventCreator.class);
+        Mockito.when(eventCreator.createNextEvent())
+                .thenReturn(new SensorEvent(SensorEventType.LIGHT_ON, "1"))
+                .thenReturn(new SensorEvent(SensorEventType.DOOR_CLOSED, "1"))
+                .thenReturn(null);
         //when
-        aggregateEventProcessor.processEvents(new EventCreator() {
-            int counter = 3;
-            @Override
-            public Event createNextEvent() {
-                counter--;
-                if (counter == 2) return new SensorEvent(SensorEventType.LIGHT_ON, "1");
-                else if (counter == 1) return new SensorEvent(SensorEventType.DOOR_CLOSED, "1");
-                else return null;
-            }
-        }, smartHome);
+        aggregateEventProcessor.processEvents(eventCreator, smartHome);
         //verify
         Mockito.verify(lightEventProcessor, Mockito.times(2)).processEvent(Mockito.any(), Mockito.any());
         Mockito.verify(doorEventProcessor, Mockito.times(2)).processEvent(Mockito.any(), Mockito.any());
