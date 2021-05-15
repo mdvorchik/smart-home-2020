@@ -19,7 +19,7 @@ public class DoorOpenAction implements Action {
     public void execute(Object component) {
         if (component instanceof Door && objectId.equals(((Door) component).getId())) {
             ((Door) component).setOpen(true);
-            logger.log("Door " + objectId + " in room " + ((Door) component).getRoomName(smartHome) + " was opened.");
+            logger.log("Door " + objectId + " in room " + smartHome.getRoomNameByDoorId(objectId) + " was opened.");
         }
     }
 }

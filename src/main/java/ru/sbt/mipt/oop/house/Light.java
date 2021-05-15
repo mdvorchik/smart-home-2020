@@ -23,14 +23,6 @@ public class Light implements Actionable {
         isOn = on;
     }
 
-    public String getRoomName(SmartHome smartHome) {
-        for (Actionable room: smartHome.getRooms()) {
-            if (room instanceof Room && ((Room) room).containsLightWithId(id))
-                return ((Room) room).getName();
-        }
-        return "not found";
-    }
-
     @Override
     public void execute(Action action) {
         if (action instanceof LightOffAction) {

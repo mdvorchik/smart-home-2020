@@ -19,7 +19,7 @@ public class LightOnAction implements Action {
     public void execute(Object component) {
         if (component instanceof Light && objectId.equals(((Light) component).getId())) {
             ((Light) component).setOn(true);
-            logger.log("Light " + objectId + " in room " + ((Light) component).getRoomName(smartHome) + " was turned on.");
+            logger.log("Light " + objectId + " in room " + smartHome.getRoomNameByLightId(objectId) + " was turned on.");
         }
     }
 }

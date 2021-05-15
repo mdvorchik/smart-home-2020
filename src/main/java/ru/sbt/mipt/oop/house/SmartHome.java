@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class SmartHome implements Actionable {
-    Collection<Room> rooms;
+    private Collection<Room> rooms;
 
     public SmartHome() {
         rooms = new ArrayList<>();
@@ -21,8 +21,24 @@ public class SmartHome implements Actionable {
         rooms.add(room);
     }
 
-    public Collection<Room> getRooms() {
+    private Collection<Room> getRooms() {
         return rooms;
+    }
+
+    public String getRoomNameByLightId(String id) {
+        for (Actionable room: this.getRooms()) {
+            if (room instanceof Room && ((Room) room).containsLightWithId(id))
+                return ((Room) room).getName();
+        }
+        return "not found";
+    }
+
+    public String getRoomNameByDoorId(String id) {
+        for (Actionable room: this.getRooms()) {
+            if (room instanceof Room && ((Room) room).containsDoorWithId(id))
+                return ((Room) room).getName();
+        }
+        return "not found";
     }
 
     @Override
