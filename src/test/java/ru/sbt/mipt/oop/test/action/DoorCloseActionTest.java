@@ -3,6 +3,8 @@ package ru.sbt.mipt.oop.test.action;
 import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
+import ru.sbt.mipt.oop.action.AllTheLightOffAction;
 import ru.sbt.mipt.oop.action.DoorCloseAction;
 import ru.sbt.mipt.oop.command.CommandSender;
 import ru.sbt.mipt.oop.command.SmartHomeCommandSender;
@@ -36,6 +38,22 @@ public class DoorCloseActionTest extends TestCase {
         //verify
         Assert.assertFalse((Boolean) doorIsOpenField.get(doorIsOpen));
         Assert.assertFalse((Boolean) doorIsOpenField.get(doorIsClosed));
+    }
+
+    @Test
+    public void testSmartHomeWasExecutedWithAllTheLightOffActionWhenReceivedDoorCloseActionInHall() {
+        //given
+        Logger logger = new LoggerToConsole();
+        CommandSender commandSender = new SmartHomeCommandSender(logger);
+        SmartHome smartHome = new SmartHome();
+        SmartHome mockSmartHome = Mockito.mock(SmartHome.class);
+        smartHome.addRoom(new Room(Arrays.asList(new Light("1", true)),
+                Arrays.asList(new Door(true, "1")), "testHall"));
+        Mockito.when(mockSmartHome.getRoomNameByDoorId("1")).thenReturn("hall");
+        //when
+        smartHome.execute(new DoorCloseAction("1", mockSmartHome, commandSender, logger));
+        //verify
+        Mockito.verify(mockSmartHome, Mockito.times(1)).execute(new AllTheLightOffAction(Mockito.any()));
     }
 
     @Test
