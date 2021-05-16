@@ -31,7 +31,7 @@ public class Light implements Actionable {
         if (action instanceof LightOnAction) {
             action.execute(this);
         }
-        if (action instanceof EveryLightOffAction) {
+        if (action instanceof AllTheLightOffAction) {
             action.execute(this);
         }
     }

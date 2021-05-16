@@ -26,7 +26,7 @@ public class DoorCloseAction implements Action {
             // если мы получили событие о закрытие двери в холле - это значит, что была закрыта входная дверь.
             // в этом случае мы хотим автоматически выключить свет во всем доме (это же умный дом!)
             if (smartHome.getRoomNameByDoorId(objectId).equals("hall")) {
-                smartHome.execute(new EveryLightOffAction(commandSender));
+                smartHome.execute(new AllTheLightOffAction(commandSender));
             }
         }
     }
