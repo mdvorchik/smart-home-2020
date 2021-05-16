@@ -15,6 +15,7 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 
 public class LightOnActionTest extends TestCase {
+
     @Test
     public void testExecuteMethodOfLightTurnOnLightWhenReceivedLightOnAction() throws NoSuchFieldException, IllegalAccessException {
         //given
@@ -51,5 +52,4 @@ public class LightOnActionTest extends TestCase {
         Assert.assertFalse((Boolean) lightIsOnField.get(lightIsNotOn));
         Assert.assertTrue((Boolean) lightIsOnField.get(lightIsOff));
     }
-
 }
