@@ -28,8 +28,8 @@ public class Application {
         SmartHome smartHome = stateReader.readStateOfHome("smart-home-1.js");
         // создаем список обработчиков возможный событий
         List<EventProcessor> eventProcessorList = new ArrayList<>();
-        eventProcessorList.add(new DoorEventProcessor(logger, new SmartHomeCommandSender(logger)));
-        eventProcessorList.add(new LightEventProcessor(logger));
+        eventProcessorList.add(new SecurityEventProcessor(new DoorEventProcessor(logger, new SmartHomeCommandSender(logger))));
+        eventProcessorList.add(new SecurityEventProcessor(new LightEventProcessor(logger)));
         eventProcessorList.add(new AlarmEventProcessor());
         // начинаем цикл обработки событий
         AggregateEventProcessor eventProcessor = new AggregateEventProcessorImpl(logger, eventProcessorList);

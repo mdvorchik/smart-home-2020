@@ -43,6 +43,10 @@ public class SmartHome implements Actionable {
         return "not found";
     }
 
+    public Alarm getAlarm() {
+        return alarm;
+    }
+
     @Override
     public void execute(Action action) {
         alarm.execute(action);
