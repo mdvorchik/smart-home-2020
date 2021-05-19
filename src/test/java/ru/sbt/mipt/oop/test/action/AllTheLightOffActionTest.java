@@ -1,6 +1,5 @@
 package ru.sbt.mipt.oop.test.action;
 
-import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
 import ru.sbt.mipt.oop.action.AllTheLightOffAction;
@@ -16,7 +15,7 @@ import ru.sbt.mipt.oop.utils.LoggerToConsole;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 
-public class AllTheLightOffActionTest extends TestCase {
+public class AllTheLightOffActionTest {
 
     @Test
     public void testAllTheLightsInAllTheRoomsTurnOffWhenReceivedAllTheLightOffAction() throws NoSuchFieldException, IllegalAccessException {

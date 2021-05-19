@@ -1,6 +1,5 @@
 package ru.sbt.mipt.oop.test.event;
 
-import junit.framework.TestCase;
 import org.junit.Test;
 import org.mockito.Mockito;
 import ru.sbt.mipt.oop.event.*;
@@ -11,7 +10,7 @@ import ru.sbt.mipt.oop.utils.LoggerToConsole;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AggregateEventProcessorImplTest extends TestCase {
+public class AggregateEventProcessorImplTest {
 
     @Test
     public void testAggregateEventProcessorProcessAllTheReceivedEventsByAllTheGivenProcessors() {

@@ -1,6 +1,5 @@
 package ru.sbt.mipt.oop.test.event;
 
-import junit.framework.TestCase;
 import org.junit.Test;
 import org.mockito.Mockito;
 import ru.sbt.mipt.oop.event.Event;
@@ -10,7 +9,7 @@ import ru.sbt.mipt.oop.event.SensorEventType;
 import ru.sbt.mipt.oop.house.SmartHome;
 import ru.sbt.mipt.oop.utils.LoggerToConsole;
 
-public class LightEventProcessorTest extends TestCase {
+public class LightEventProcessorTest {
 
     @Test
     public void testSmartHomeWasExecutedByLightEventProcessorWhenEventLightOnWasReceived() {

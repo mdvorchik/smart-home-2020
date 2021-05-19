@@ -1,6 +1,5 @@
 package ru.sbt.mipt.oop.test.action;
 
-import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -18,7 +17,7 @@ import ru.sbt.mipt.oop.utils.LoggerToConsole;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 
-public class DoorCloseActionTest extends TestCase {
+public class DoorCloseActionTest {
 
     @Test
     public void testExecuteMethodOfDoorCloseWhenReceivedDoorCloseAction() throws NoSuchFieldException, IllegalAccessException {

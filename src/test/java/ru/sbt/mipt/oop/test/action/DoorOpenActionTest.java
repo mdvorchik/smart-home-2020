@@ -1,6 +1,5 @@
 package ru.sbt.mipt.oop.test.action;
 
-import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
 import ru.sbt.mipt.oop.action.DoorOpenAction;
@@ -14,7 +13,7 @@ import ru.sbt.mipt.oop.utils.LoggerToConsole;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 
-public class DoorOpenActionTest extends TestCase {
+public class DoorOpenActionTest {
 
     @Test
     public void testExecuteMethodOfDoorOpenWhenReceivedDoorOpenAction() throws NoSuchFieldException, IllegalAccessException {

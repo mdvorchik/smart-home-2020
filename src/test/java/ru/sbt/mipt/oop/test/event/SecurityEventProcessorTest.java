@@ -1,8 +1,6 @@
 package ru.sbt.mipt.oop.test.event;
 
-import junit.framework.TestCase;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import ru.sbt.mipt.oop.command.SmartHomeCommandSender;
 import ru.sbt.mipt.oop.event.*;
@@ -10,9 +8,7 @@ import ru.sbt.mipt.oop.house.SmartHome;
 import ru.sbt.mipt.oop.house.alarm.Alarm;
 import ru.sbt.mipt.oop.utils.LoggerToConsole;
 
-import static org.junit.Assert.*;
-
-public class SecurityEventProcessorTest extends TestCase {
+public class SecurityEventProcessorTest {
 
     @Test
     public void testSmartHomeWasExecutedBySomeEventProcessorWhenSomeEventWasReceivedAndAlarmWasDeactivated() {

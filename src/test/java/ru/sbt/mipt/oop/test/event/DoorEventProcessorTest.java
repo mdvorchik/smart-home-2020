@@ -1,14 +1,16 @@
 package ru.sbt.mipt.oop.test.event;
 
-import junit.framework.TestCase;
 import org.junit.Test;
 import org.mockito.Mockito;
 import ru.sbt.mipt.oop.command.SmartHomeCommandSender;
-import ru.sbt.mipt.oop.event.*;
+import ru.sbt.mipt.oop.event.DoorEventProcessor;
+import ru.sbt.mipt.oop.event.Event;
+import ru.sbt.mipt.oop.event.SensorEvent;
+import ru.sbt.mipt.oop.event.SensorEventType;
 import ru.sbt.mipt.oop.house.SmartHome;
 import ru.sbt.mipt.oop.utils.LoggerToConsole;
 
-public class DoorEventProcessorTest extends TestCase {
+public class DoorEventProcessorTest {
 
     @Test
     public void testSmartHomeWasExecutedByDoorEventProcessorWhenEventDoorOpenWasReceived() {
