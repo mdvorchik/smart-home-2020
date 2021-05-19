@@ -1,10 +1,8 @@
 package ru.sbt.mipt.oop.event;
 
 import ru.sbt.mipt.oop.house.SmartHome;
-import ru.sbt.mipt.oop.house.alarm.Alarm;
 import ru.sbt.mipt.oop.house.alarm.AlarmActivated;
 import ru.sbt.mipt.oop.house.alarm.AlarmDeactivated;
-import ru.sbt.mipt.oop.house.alarm.AlarmTriggered;
 
 public class SecurityEventProcessor implements EventProcessor{
     private final EventProcessor eventProcessor;
