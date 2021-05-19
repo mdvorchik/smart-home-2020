@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop.event;
 
 public interface Event {
-    SensorEventType getType();
+    Enum getType();
     String getObjectId();
 }

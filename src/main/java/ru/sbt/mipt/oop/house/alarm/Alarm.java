@@ -1,6 +1,8 @@
 package ru.sbt.mipt.oop.house.alarm;
 
-public class Alarm {
+import ru.sbt.mipt.oop.action.*;
+
+public class Alarm implements Actionable {
     private AlarmState alarmState;
     private String id;
     private String code;
@@ -40,5 +42,15 @@ public class Alarm {
 
     public void trigger() {
         alarmState.trigger();
+    }
+
+    @Override
+    public void execute(Action action) {
+        if (action instanceof AlarmActivateAction) {
+            action.execute(this);
+        }
+        if (action instanceof AlarmDeactivateAction) {
+            action.execute(this);
+        }
     }
 }

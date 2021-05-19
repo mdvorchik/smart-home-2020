@@ -13,7 +13,7 @@ public class AlarmDeactivated implements AlarmState {
     public void activate(String code) {
         alarm.setCode(code);
         alarm.setAlarmState(new AlarmActivated(alarm));
-        System.out.println("Deactivate alarm with id: " + alarm.getId());
+        System.out.println("Activate alarm with id: " + alarm.getId());
     }
 
     @Override

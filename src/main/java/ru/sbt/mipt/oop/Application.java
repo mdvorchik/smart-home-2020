@@ -30,6 +30,7 @@ public class Application {
         List<EventProcessor> eventProcessorList = new ArrayList<>();
         eventProcessorList.add(new DoorEventProcessor(logger, new SmartHomeCommandSender(logger)));
         eventProcessorList.add(new LightEventProcessor(logger));
+        eventProcessorList.add(new AlarmEventProcessor());
         // начинаем цикл обработки событий
         AggregateEventProcessor eventProcessor = new AggregateEventProcessorImpl(logger, eventProcessorList);
         eventProcessor.processEvents(eventCreator, smartHome);
