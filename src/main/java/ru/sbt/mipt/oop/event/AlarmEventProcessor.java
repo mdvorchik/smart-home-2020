@@ -1,5 +1,6 @@
 package ru.sbt.mipt.oop.event;
 
+import org.springframework.stereotype.Component;
 import ru.sbt.mipt.oop.action.AlarmActivateAction;
 import ru.sbt.mipt.oop.action.AlarmDeactivateAction;
 import ru.sbt.mipt.oop.house.SmartHome;
@@ -7,6 +8,7 @@ import ru.sbt.mipt.oop.house.SmartHome;
 import static ru.sbt.mipt.oop.event.AlarmEventType.ALARM_ACTIVATE;
 import static ru.sbt.mipt.oop.event.AlarmEventType.ALARM_DEACTIVATE;
 
+@Component
 public class AlarmEventProcessor implements EventProcessor{
 
     @Override

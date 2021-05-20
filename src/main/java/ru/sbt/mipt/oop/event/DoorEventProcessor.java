@@ -1,5 +1,7 @@
 package ru.sbt.mipt.oop.event;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ru.sbt.mipt.oop.action.DoorCloseAction;
 import ru.sbt.mipt.oop.action.DoorOpenAction;
 import ru.sbt.mipt.oop.command.CommandSender;
@@ -9,11 +11,15 @@ import ru.sbt.mipt.oop.utils.Logger;
 import static ru.sbt.mipt.oop.event.SensorEventType.DOOR_CLOSED;
 import static ru.sbt.mipt.oop.event.SensorEventType.DOOR_OPEN;
 
+@Component
 public class DoorEventProcessor implements EventProcessor {
 
+    @Autowired
     private final Logger logger;
+    @Autowired
     private final CommandSender commandSender;
 
+    @Autowired
     public DoorEventProcessor(Logger logger, CommandSender commandSender) {
         this.logger = logger;
         this.commandSender = commandSender;

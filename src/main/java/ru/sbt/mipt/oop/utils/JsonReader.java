@@ -1,12 +1,14 @@
 package ru.sbt.mipt.oop.utils;
 
 import com.google.gson.Gson;
+import org.springframework.stereotype.Component;
 import ru.sbt.mipt.oop.house.SmartHome;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+@Component
 public class JsonReader implements StateReader {
     @Override
     public SmartHome readStateOfHome(Object source) {
