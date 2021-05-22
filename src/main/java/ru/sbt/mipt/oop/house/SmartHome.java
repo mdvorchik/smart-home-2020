@@ -50,6 +50,7 @@ public class SmartHome implements Actionable {
     @Override
     public void execute(Action action) {
         alarm.execute(action);
+        action.execute(this);
         for (Actionable room : this.getRooms()) {
             room.execute(action);
         }

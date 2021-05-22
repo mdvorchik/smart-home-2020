@@ -25,14 +25,6 @@ public class Light implements Actionable {
 
     @Override
     public void execute(Action action) {
-        if (action instanceof LightOffAction) {
-            action.execute(this);
-        }
-        if (action instanceof LightOnAction) {
-            action.execute(this);
-        }
-        if (action instanceof AllTheLightOffAction) {
-            action.execute(this);
-        }
+        action.execute(this);
     }
 }

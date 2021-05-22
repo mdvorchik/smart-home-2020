@@ -25,11 +25,6 @@ public class Door implements Actionable {
 
     @Override
     public void execute(Action action) {
-        if (action instanceof DoorOpenAction) {
-            action.execute(this);
-        }
-        if (action instanceof DoorCloseAction) {
-            action.execute(this);
-        }
+        action.execute(this);
     }
 }
