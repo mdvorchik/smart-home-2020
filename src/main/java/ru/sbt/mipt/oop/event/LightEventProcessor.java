@@ -13,7 +13,6 @@ import static ru.sbt.mipt.oop.event.SensorEventType.LIGHT_ON;
 @Component
 public class LightEventProcessor implements EventProcessor {
 
-    @Autowired
     private final Logger logger;
 
     @Autowired

@@ -6,7 +6,7 @@ import ru.sbt.mipt.oop.utils.Logger;
 
 @Component
 public class SmartHomeCommandSender implements CommandSender {
-    @Autowired
+
     private final Logger logger;
 
     @Autowired
