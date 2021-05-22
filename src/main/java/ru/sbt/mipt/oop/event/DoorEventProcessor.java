@@ -14,9 +14,7 @@ import static ru.sbt.mipt.oop.event.SensorEventType.DOOR_OPEN;
 @Component
 public class DoorEventProcessor implements EventProcessor {
 
-    @Autowired
     private final Logger logger;
-    @Autowired
     private final CommandSender commandSender;
 
     @Autowired

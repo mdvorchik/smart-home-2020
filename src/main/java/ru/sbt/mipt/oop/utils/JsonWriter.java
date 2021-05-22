@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 
 @Component
 public class JsonWriter implements StateWriter {
-    @Autowired
+
     private final Logger logger;
 
     @Autowired
